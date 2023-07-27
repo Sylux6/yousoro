@@ -1,0 +1,3 @@
+# Yousoro
+
+Track your anime
