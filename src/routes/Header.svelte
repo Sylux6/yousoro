@@ -23,9 +23,8 @@
           <ul
             class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li><a href="/#">Homepage</a></li>
-            <li><a href="/#">Portfolio</a></li>
-            <li><a href="/#">About</a></li>
+            <li><a href="/home">Homepage</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
         </div>
       </div>
