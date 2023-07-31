@@ -11,7 +11,9 @@
     <slot />
   </main>
 
-  <footer>⚓</footer>
+  <footer>
+    <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>⚓</button>
+  </footer>
 </div>
 
 <style>

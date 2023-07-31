@@ -1,54 +1,53 @@
 <script lang="ts">
-  import { page } from '$app/stores';
-  import type { Domain } from '../../../../shared/types/domain';
-  import { onMount } from 'svelte';
-  import { isDomain } from '../../../../shared/types/domain.js';
-  import { authenticate } from './my-anime-list';
+  import AnimeCard from '$lib/components/AnimeCard.svelte';
+  import type { Anime } from '$lib/types/anime';
 
-  let isLoading = true;
-  let domain: Domain;
-  let username: string;
-  let r;
-
-  onMount(() => {
-    if (isDomain($page.params.domain)) {
-      domain = $page.params.domain;
-    } else {
-      throw 'invalid domain';
-    }
-    username = $page.params.username;
-    authenticate().then((result) => {
-      r = result;
-      isLoading = false;
-    });
-  });
+  /** @type {import('./$types').PageData} */
+  export let data: { username: string; watchingList: Anime[] };
 </script>
 
 <svelte:head>
-  <title>{username} - Yousoro</title>
+  <title>{data?.username} - Yousoro</title>
   <meta name="description" content="Yousoro app" />
 </svelte:head>
 
-{#if isLoading}
-  <section class="loading-container">
-    <span class="loading loading-ring loading-lg" />
-  </section>
-{:else}
-  <div>
-    {#each r.data as d}
-      <div>
-        {d.node.title}
-      </div>
+<section>
+  <div class="username flex justify-center">
+    <a
+      class="link link-hover font-bold"
+      href={`https://myanimelist.net/animelist/${data.username}?status=1`}
+      target="_blank">{data.username}'s profile</a
+    >
+  </div>
+
+  <div class="anime-grid">
+    {#each data?.watchingList as anime}
+      <AnimeCard bind:anime />
     {/each}
   </div>
-{/if}
+</section>
 
 <style>
-  .loading-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 0.3;
+  .username {
+    font-size: larger;
+    margin-bottom: 20px;
+  }
+  .anime-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+    row-gap: 20px;
+  }
+
+  @media (max-width: 1000px) and (min-width: 700px) {
+    .anime-grid {
+      grid-template-columns: auto auto;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .anime-grid {
+      grid-template-columns: auto;
+    }
   }
 </style>

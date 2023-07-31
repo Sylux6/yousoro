@@ -1,3 +1,3 @@
 # Yousoro
 
-Track your anime
+Keep track of your anime watching list
