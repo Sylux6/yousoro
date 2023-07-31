@@ -1,20 +1,17 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import type { UserDomain } from '../../shared/types/user-domain';
-  import type { Domain } from '../../shared/types/domain';
+  import type { Domain } from '$lib/types/domain';
+  import type { UserDomain } from '$lib/types/user-domain';
 
   const domainOptions: UserDomain[] = [
-    { label: 'MyAnimeList', value: 'my-anime-list' },
-    { label: 'AniList', value: 'ani-list', disabled: true },
+    { label: 'MyAnimeList', value: 'myanimelist' },
+    { label: 'AniList', value: 'anilist', disabled: true },
   ];
 
   let username = '';
-  let domain: Domain = 'my-anime-list';
+  let domain: Domain = 'myanimelist';
 
   function submit() {
-    if (domain === 'my-anime-list' && !localStorage.getItem('malClientId')) {
-      return;
-    }
     goto(`/user/${domain}/${username}`);
   }
 </script>
