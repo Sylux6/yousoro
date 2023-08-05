@@ -5,7 +5,7 @@
 
 <svelte:head>
   <title>Home - Yousoro</title>
-  <meta name="description" content="Yousoro app" />
+  <meta name="description" content="Keep track of your anime watching list" />
 </svelte:head>
 
 <section>

@@ -8,7 +8,7 @@
 
 <svelte:head>
   <title>{data?.username} - Yousoro</title>
-  <meta name="description" content="Yousoro app" />
+  <meta name="description" content={`${data?.username}'s watching list`} />
 </svelte:head>
 
 <section>
